@@ -1,0 +1,32 @@
+<div class="row box-customer">
+
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <input id="first_name" [(ngModel)]="firstName" placeholder="please input your first name" type="text" class="validate">
+        <label for="first_name">Firstname</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <input id="last_name" [(ngModel)]="lastName" placeholder="please input your last name" type="text" class="validate">
+        <label for="last_name">Lastname</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <select materialize="material_select" [materializeSelectOptions]="ycompanyData" [(ngModel)]="compName" id="company" name="company">
+          <option value="" disabled selected>Choose your option</option>
+          <option *ngFor="let comp of companyData;" [value]="comp.compName">{{comp.compName}}</option>
+        </select>
+        <label for="company">Company Name</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <input id="email" [(ngModel)]="email" placeholder="please input your email" type="email" class="validate">
+        <label for="email" data-error="wrong">Email</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <input id="tel" [(ngModel)]="tel" placeholder="please input your phone number" type="text" class="validate" pattern="\d{10}">
+        <label for="tel" data-error="wrong">Tel</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l3 offset-l4">
+        <textarea id="address" [(ngModel)]="address" class="materialize-textarea" placeholder="please input your address"></textarea>
+        <label for="address">Address</label>
+    </div>
+
+    <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
+</div>

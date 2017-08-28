@@ -1,0 +1,14 @@
+<div class="row box-issue">
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+        <input id="email" [(ngModel)]="email" placeholder="please input your email" type="email" class="validate">
+        <label for="email" data-error="wrong" >Email</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+        <textarea id="issue" [(ngModel)]="issue" placeholder="please input your issue" class="materialize-textarea"></textarea>
+        <label for="issue" data-error="wrong" data-success="right">Issue</label>
+    </div>
+    <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+        <input type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{format:'dd/mm/yyyy'}]" >
+    </div>
+    <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
+</div>

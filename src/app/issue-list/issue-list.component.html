@@ -1,0 +1,44 @@
+<nav>
+    <div class="nav-wrapper white">
+      <form>
+        <div class="input-field">
+          <input id="search" name="search" required [(ngModel)]="searchText" type="search" required>
+          <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+          <i class="material-icons" (click)="search()">find_in_page</i>
+        </div>
+      </form>
+    </div>
+  </nav>
+  
+  <table class="striped responsive-table highlight centered">
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Issue</th>
+        <th>Date</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let iss of issueData; let i = index;">
+        <td>{{iss.email}}</td>
+        <td>{{iss.issue}}</td>
+        <td>{{iss.issue_date}}</td>
+        <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onEditButtonClick(iss._id);">edit</i></a></td>
+        <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onDeleteButtonClick(iss._id);">delete</i></a></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <ul class="pagination center">
+    <li class="waves-effect" *ngFor="let p of paging; let i = index;" [ngClass]="{'active' : i == numPage}">
+      <a (click)="gotoPage(i)">{{p}}</a>
+    </li>
+  </ul>
+  
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large waves-effect waves-light green lighten-1" (click)="onAddButtonClick();">
+      <i class="large material-icons">add</i></a>
+  </div>

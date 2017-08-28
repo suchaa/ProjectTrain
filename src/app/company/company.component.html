@@ -1,0 +1,13 @@
+<div class="row box-company">
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+        <input id="comp_code" [(ngModel)]="compCode" placeholder="please input your company code" type="text">
+        <label for="comp_code">Company Code</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+        <input id="comp_name" [(ngModel)]="compName" placeholder="please input your company name" type="text">
+        <label for="comp_code">Company Name</label>
+    </div>
+    <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
+</div>
+
+  

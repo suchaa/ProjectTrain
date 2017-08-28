@@ -1,0 +1,31 @@
+<div class="row box-user">
+  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+    <input id="first_name" [(ngModel)]="firstName" class="validate" placeholder="please input your first name" type="text">
+    <label for="first_name">Firstname</label>
+  </div>
+  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+    <input id="last_name" [(ngModel)]="lastName" class="validate" placeholder="please input your last name" type="text">
+    <label for="last_name">Lastname</label>
+  </div>
+  <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+    <label>Gender</label>
+  <!-- <div *ngFor="let item of gender">
+      <input type="radio" name="gender" id="{{item}}" value="{{item}}" (change)="radioChangeHandler($event)">
+      <label for="{{item}}">{{item}}</label>
+    </div> -->
+    <input [(ngModel)]="gender" type="radio" class="with-gap" name="gender" id="0" value="male">
+    <label for="0">Male</label>
+    <input [(ngModel)]="gender" type="radio" class="with-gap" name="gender" id="1" value="female">
+    <label for="1">Female</label>
+    <p><label>Your select: <b>{{gender}}</b></label></p>
+  </div>
+  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+    <input id="e_mail" [(ngModel)]="email" placeholder="please input your email" type="email" class="validate">
+    <label for="e_mail" data-error="wrong" data-success="right">Email</label>
+  </div>
+  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+    <input id="pass_word" [(ngModel)]="password" placeholder="please input your password" type="password" class="validate" pattern="\d{5,8}">
+    <label for="pass_word" data-error="wrong" data-success="right">Password</label>
+  </div>
+  <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
+</div>
