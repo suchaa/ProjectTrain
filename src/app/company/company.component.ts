@@ -31,7 +31,7 @@ export class CompanyComponent implements OnInit {
         // this.compCode = company.compCode;
         // this.compName = company.compName;
         this.companyService.loadItemById(id).subscribe(data => {
-          Materialize.updateTextFields();
+          //Materialize.updateTextFields(); /* npm install angular2-materialize --save แล้วไปใส่ใน html แทน */
           this.compCode = data.compCode;
           this.compName = data.compName;
         },

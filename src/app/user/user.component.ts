@@ -1,58 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserService } from '../user.service' /* import service user */
+import { User } from '../shared/user/user'
+import { UserService } from '../shared/user/user.service' /* import service user */
+import { UploadService } from '../shared/user/upload.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
-  providers: [ UserService ]
+  providers: [ UserService, UploadService ]
 })
 export class UserComponent implements OnInit {
 
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private userService: UserService) {}
+    private userService: UserService,
+    private uploadService: UploadService) {
+    this.user = new User();
+  }
 
+  user: User;
   mode: string = "ADD";
-  id: number = 0;
-  firstName: string;
-  lastName: string;
- // gender: any = ["male", "female"];
-  //i: string = '';
-  selectedItem: string = '';
-  gender: string;
-  email: string;
-  password: string;
-  companyData = [];
-
- /*  entries = [{id: 0, name: "male"},{id:1, name: "female"}];
-  selectedEntry;
-  onSelectionChange(entry) {
-     // this.selectedEntry = entry;
-      this.selectedEntry = Object.assign({}, this.selectedEntry, entry);
-  } */
-
-  /* radioChangeHandler(event: any) {
-    this.selectedItem = event.target.value;
-  } */
+  id: string = "";
+  filesToUpload = [];
+  url="";
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       if (params['id']) {
         let id = params['id'];
-        this.userService.loadItemById(id).subscribe(data => {
-          Materialize.updateTextFields();
-          this.firstName = data.firstName;
-          this.lastName = data.lastName;
-          this.gender = data.gender;
-          this.email = data.email;
-          this.password = data.password;
-        },
-          error => {
+        this.userService.findById(id).subscribe(
+          user => {
+            this.user = user;
+            this.url = "http://localhost:3000/user/profile/"+ id;
+          }, error => {
             console.log(error);
-          })
+          });
         this.mode = "EDIT";
         this.id = id;
       }
@@ -60,27 +45,23 @@ export class UserComponent implements OnInit {
   }
 
   onSave() {
-    let us = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      gender: this.gender,
-      email: this.email,
-      password: this.password
-    }
     if (this.mode === "EDIT") {
-      this.userService.updateItem(this.id, us).subscribe(
+      this.userService.updateItem(this.id, this.user).subscribe(
         datas => {
           Materialize.toast('Update complate.', 1000);
+          this.upload();
           this.router.navigate(['support', 'user-list']);
         },
         err => {
           console.log(err);
         });
     } else {
-      this.userService.addItem(us).subscribe(
+      this.userService.addItem(this.user).subscribe(
         datas => {
+          this.id = datas.insertedIds;
           Materialize.toast('Save complate.', 1000);
-          this.router.navigate(['support', 'user-list']);
+          this.upload();
+          // this.router.navigate(['support', 'user-list']);
         },
         err => {
           console.log(err);
@@ -88,5 +69,34 @@ export class UserComponent implements OnInit {
     }
   }
 
+  fileChangeEvent(fileInput) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+
+  upload() {
+    if (this.filesToUpload.length > 0) {
+      this.uploadService.makeFileRequest(
+        "avatar",
+        environment.apiUrl + "/user/profile/" + this.id,
+        [], this.filesToUpload).subscribe((res) => {
+         // Materialize.toast('save complete.', 1000);
+          this.router.navigate(['support', 'user-list']);
+        });
+    } else {
+      this.router.navigate(['support', 'user-list']);
+    }
+  }
+
+  readUrl(event) {
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = (event) => {
+        this.url = event.target["result"];
+      }
+
+      reader.readAsDataURL(event.target.files[0]);
+    }
+  }
 
 }

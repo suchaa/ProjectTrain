@@ -3,24 +3,30 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class CustomerService {
 
-  constructor(private http : Http) { }
+  options: RequestOptions;
+  constructor(private http : Http) {
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: headers });
+  }
 
   loadItem(): Observable<any[]> {
-    return this.http.get(`${environment.apiUrl}/customer`)
+    return this.http.get(`${environment.apiUrl}/customer`, this.options)
       .map((res: Response) => {
         return res.json()
       })
       .catch((error: any) => Observable.throw(error));
   }
 
-
   loadItemById(id): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/customer/findById/${id}`)
+    return this.http.get(`${environment.apiUrl}/customer/findById/${id}`, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -29,10 +35,8 @@ export class CustomerService {
 
   addItem(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${environment.apiUrl}/customer`, body, options)
+    return this.http.post(`${environment.apiUrl}/customer`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -40,21 +44,17 @@ export class CustomerService {
   }
 
   deleteItem(id): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/customer/${id}`)
+    return this.http.delete(`${environment.apiUrl}/customer/${id}`, this.options)
       .map((res: Response) => {
         return res.json()
       })
       .catch((error: any) => Observable.throw(error));
   }
 
-
   updateItem(id, body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
 
-
-    return this.http.put(`${environment.apiUrl}/customer/${id}`, body, options)
+    return this.http.put(`${environment.apiUrl}/customer/${id}`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -63,19 +63,8 @@ export class CustomerService {
 
   search(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${environment.apiUrl}/customer/search`, bodyString, options)
-      .map((res: Response) => {
-        return res.json()
-      })
-      .catch((error: any) => Observable.throw(error));
-  }
-
-  /* load company data */
-  lasdItemComp(): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/customer/companyname`)
+    return this.http.post(`${environment.apiUrl}/customer/search`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })

@@ -1,44 +1,85 @@
 <nav>
-    <div class="nav-wrapper white">
-      <form>
-        <div class="input-field">
-          <input id="search" name="search" required [(ngModel)]="searchText" type="search" required>
-          <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
-          <i class="material-icons" (click)="search()">find_in_page</i>
-        </div>
-      </form>
-    </div>
-  </nav>
-  
-  <table class="striped responsive-table highlight centered">
-    <thead>
-      <tr>
-        <th>Email</th>
-        <th>Issue</th>
-        <th>Date</th>
-        <th>Edit</th>
-        <th>Delete</th>
-      </tr>
-    </thead>
-  
-    <tbody>
-      <tr *ngFor="let iss of issueData; let i = index;">
-        <td>{{iss.email}}</td>
-        <td>{{iss.issue}}</td>
-        <td>{{iss.issue_date}}</td>
-        <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onEditButtonClick(iss._id);">edit</i></a></td>
-        <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onDeleteButtonClick(iss._id);">delete</i></a></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <ul class="pagination center">
-    <li class="waves-effect" *ngFor="let p of paging; let i = index;" [ngClass]="{'active' : i == numPage}">
-      <a (click)="gotoPage(i)">{{p}}</a>
-    </li>
-  </ul>
-  
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light green lighten-1" (click)="onAddButtonClick();">
-      <i class="large material-icons">add</i></a>
+  <div class="nav-wrapper white">
+    <form>
+      <div class="input-field">
+        <input id="search" name="search" required [(ngModel)]="searchText" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons black-text">search</i></label>
+        <i class="material-icons" (click)="search()">find_in_page</i>
+      </div>
+    </form>
   </div>
+</nav>
+
+<table class="striped responsive-table highlight centered">
+  <thead>
+    <tr>
+      <th>{{'issue.issue_no' | translate}}</th>
+      <th>{{'issue.topic' | translate}}</th>
+      <th>{{'issue.description' | translate}}</th>
+      <th>{{'issue.company' | translate}}</th>
+      <th>{{'issue.customer' | translate}}</th>
+      <th>{{'issue.date_picker' | translate}}</th>
+      <th>{{'issue.user' | translate}}</th>
+      <th>{{'issue.status_issue' | translate}}</th>
+      <th>{{'issue.edit' | translate}}</th>
+      <th>{{'issue.delete' | translate}}</th>
+      <th>attach</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of issueData; let i = index;">
+      <td>{{item.issue_no}}</td>
+      <td>{{item.topic}}</td>
+      <td>{{item.description}}</td>
+      <td>{{item.company}}</td>
+      <td>{{item.customer}}</td>
+      <td>{{item.date_picker}}</td>
+      <td>{{item.user}}</td>
+      <td>{{item.status_issue}}</td>
+      <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onEditButtonClick(item._id)">edit</i></a></td>
+      <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onDeleteClick(item._id)">delete</i></a></td>
+      <td><a class="btn-floating btn waves-effect waves-light red lighten-1"><i class="material-icons" (click)="onAttachClick(item._id)">attach_file</i></a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ul class="pagination center">
+  <li class="waves-effect" *ngFor="let p of paging; let i = index;" [ngClass]="{'active' : i == numPage}">
+    <a (click)="gotoPage(i)">{{p}}</a>
+  </li>
+</ul>
+
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large waves-effect waves-light green lighten-1" (click)="onAddButtonClick();">
+    <i class="large material-icons">add</i></a>
+</div>
+
+<!--  <div class="row">
+  <div class="col s12 m4" *ngFor="let item of issueData">
+    <div class="card">
+      <div class="card-image">
+        <img [src]="imgUrl+item._id">
+        <a class="btn-floating halfway-fab waves-effect waves-light red" (click)="onEditButtonClick(item._id)">
+        <i class="material-icons">edit</i></a>
+      </div>
+      <div class="card-content">
+        <span class="card-title">{{item.issue_no}} {{item.topic}}</span>
+        <p>{{item.discription}}</p>
+        <p>{{item.company}}</p>
+        <p>{{item.customer}}</p>
+        <p>{{item.date_picker}}</p>
+        <p>{{item.user}}</p>
+        <p>{{item.status_issue}}</p>
+      </div>
+      <div class="card-action">
+        <a (click)="onDeleteClick(item._id)"><i class="material-icons left">delete</i>Remove</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="fixed-action-btn">
+  <a class="btn-floating btn-large red" (click)="onAddButtonClick()">
+        <i class="large material-icons">add</i>
+      </a>
+</div>  -->

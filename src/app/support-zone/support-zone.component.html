@@ -1,20 +1,21 @@
 <nav>
   <div class="nav-wrapper green darken-1">
     <a href="#!" class="brand-logo">Application</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse" materialize="sideNav"><i class="material-icons">menu</i></a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse" ><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down" >
-      <li><a routerLink="/support/company-list">Company</a></li>
-      <li><a routerLink="/support/customer-list">Customer</a></li>
-      <li><a routerLink="/support/user-list">User</a></li>
-      <li><a routerLink="/support/issue-list">Issue</a></li>
+      <li><a routerLink="/support/company-list">{{'support.company'| translate}}</a></li>
+      <li><a routerLink="/support/customer-list">{{'support.customer' | translate}}</a></li>
+      <li><a routerLink="/support/user-list">{{'support.user' | translate}}</a></li>
+      <li><a routerLink="/support/issue-list">{{'support.issue' | translate}}</a></li>
+      <li><a class="btn" (click)="changLang();">{{currentLang}}</a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
       <h1>Menu</h1>
-      <li><div class="divider"></div></li>
-      <li><a routerLink="/support/company-list">Company</a></li>
-      <li><a routerLink="/support/customer-list">Customer</a></li>
-      <li><a routerLink="/support/user-list">User</a></li>
-      <li><a routerLink="/support/issue-list">Issue</a></li>
+       <li><a class="btn" (click)="changLang();">{{currentLang}}</a></li>
+      <li><a routerLink="/support/company-list">{{'support.company' | translate}}</a></li>
+      <li><a routerLink="/support/customer-list">{{'support.customer' | translate}}</a></li>
+      <li><a routerLink="/support/user-list">{{'support.user' | translate}}</a></li>
+      <li><a routerLink="/support/issue-list">{{'support.issue' | translate}}</a></li>
     </ul>
   </div>
 </nav>

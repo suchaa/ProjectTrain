@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import  {  HomeComponent  }  from  './home/home.component';
-import  {  LoginComponent  }  from  './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 import { CompanyComponent } from './company/company.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { CustomerComponent } from './customer/customer.component';
@@ -13,6 +13,8 @@ import { IssueListComponent } from './issue-list/issue-list.component';
 import { SupportZoneComponent } from './support-zone/support-zone.component';
 import { PublicZoneComponent } from './public-zone/public-zone.component';
 import { LoginGuardService } from './login-guard.service';
+import { IssueAttachComponent } from './issue-attach/issue-attach.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {
@@ -21,11 +23,15 @@ const routes: Routes = [
     component: PublicZoneComponent,
     children: [{
       path: '', component: HomeComponent /* default path */
-    },{
+    }, {
       /* จะเอา HomeComponent มา render ให้ตรงตำแหน่ง router-outlet ใน app.component.html */
       path: 'home', component: HomeComponent
     }, {
       path: 'login', component: LoginComponent
+    },
+    {
+      path: 'chat',
+      component: ChatComponent
     }]
   }, {
     path: 'support', /* เจอ path ที่เป็น support ต้องทำ canActivate' */
@@ -33,32 +39,36 @@ const routes: Routes = [
     component: SupportZoneComponent,
     children: [{
       path: '', component: IssueListComponent /* default path */
-    },{
+    }, {
       path: 'company', component: CompanyComponent
-    },{ 
+    }, {
       path: 'company/:id', component: CompanyComponent
     },
     { /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
       path: 'company/findById/:id', component: CompanyComponent
-    },{
+    }, {
       path: 'company-list', component: CompanyListComponent
-    },{
+    }, {
       path: 'customer', component: CustomerComponent
-    },{
+    }, {
       path: 'customer-list', component: CustomerListComponent
-    },{ /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
+    }, { /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
       path: 'customer/findById/:id', component: CustomerComponent
-    },{
+    }, {
       path: 'issue', component: IssueComponent
-    },{
+    }, {
       path: 'issue-list', component: IssueListComponent
-    },{ /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
+    }, { /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
       path: 'issue/findById/:id', component: IssueComponent
-    },{
+    },
+    {
+      path: 'issue-attach/:id', component: IssueAttachComponent
+    },
+    {
       path: 'user', component: UserComponent
-    },{
+    }, {
       path: 'user-list', component: UserListComponent
-    },{ /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
+    }, { /* เพิ่ม path ที่มีการรับ parameter สำหรับ edit*/
       path: 'user/findById/:id', component: UserComponent
     },]
   }

@@ -1,14 +1,71 @@
-<div class="row box-issue">
-    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-        <input id="email" [(ngModel)]="email" placeholder="please input your email" type="email" class="validate">
-        <label for="email" data-error="wrong" >Email</label>
+<div class="container">
+    <div class="row box-issue" materialize="updateTextFields">
+        <div class="input-field col s12 m6">
+            <input id="issue_no" [(ngModel)]="issue.issue_no" [placeholder]="'issue.issue_no-placeholder' | translate" type="text" class="validate">
+            <label for="issue_no">{{'issue.issue_no' | translate}}</label>
+        </div>
+        <div class="input-field col s12 m6">
+            <input id="topic" [(ngModel)]="issue.topic" [placeholder]="'issue.topic-placeholder' | translate" type="text" class="validate">
+            <label for="topic">{{'issue.topic' | translate}}</label>
+        </div>
+        <div class="input-field col s12 m6">
+            <textarea id="description" [(ngModel)]="issue.description" [placeholder]="'issue.description-placeholder' | translate" class="materialize-textarea"></textarea>
+            <label for="description">{{'issue.description' | translate}}</label>
+        </div>
+        <div class=" input-field col s12 m6">
+            <select [(ngModel)]="issue.company" materialize="material_select" [materializeSelectOptions]="companyData"> 
+            <option value="" disabled selected>{{'issue.company-option' | translate}}</option>
+            <option *ngFor="let comp of companyData;" [value]="comp.compCode" >{{comp.compName}}</option>
+        </select>
+            <label>{{'issue.company' | translate}}</label>
+        </div>
+        <div class=" input-field col s12 m6">
+            <select [(ngModel)]="issue.customer" materialize="material_select" [materializeSelectOptions]="customerData"> 
+            <option value="" disabled selected>{{'issue.customer-option' | translate}}</option>
+            <option *ngFor="let cus of customerData;"  [value]="cus.firstName+' '+cus.lastName" >{{cus.firstName}} {{cus.lastName}}</option>
+        </select>
+            <label>{{'issue.customer' | translate}}</label>
+        </div>
+        <div class="col s12 m6">
+            <label for="date_picker">{{'issue.date_picker' | translate}}</label>
+            <input  [(ngModel)]="issue.date_picker" id="date_picker" type="text" [placeholder]="'issue.date_picker-placeholder' | translate" class="datepicker" materialize="pickadate"
+                [materializeParams]="[{format:'dd/mm/yyyy'}]">
+        </div>
+        <div class=" input-field col s12 m6">
+            <select [(ngModel)]="issue.user" materialize="material_select" [materializeSelectOptions]="userData"> 
+            <option value="" disabled selected>{{'issue.user-option' | translate}}</option>
+            <option *ngFor="let users of userData;" [value]="users.firstName+ ' '+users.lastName" >{{users.firstName}} {{users.lastName}}</option>
+        </select>
+            <label>{{'issue.user' | translate}}</label>
+        </div>
+        <div class=" col s12 m6">
+            <p><label>{{'issue.status_issue' | translate}} <b>{{issue.status_issue}}</b></label></p>
+            <input [(ngModel)]="issue.status_issue" type="radio" class="with-gap" name="status_issue" id="0" value="waiting">
+            <label for="0">{{'issue.waiting' | translate}}</label>
+            <input [(ngModel)]="issue.status_issue" type="radio" class="with-gap" name="status_issue" id="1" value="process">
+            <label for="1">{{'issue.process' | translate}}</label>
+            <input [(ngModel)]="issue.status_issue" type="radio" class="with-gap" name="status_issue" id="2" value="hold">
+            <label for="2">{{'issue.hold' | translate}}</label>
+            <input [(ngModel)]="issue.status_issue" type="radio" class="with-gap" name="status_issue" id="3" value="cancel">
+            <label for="3">{{'issue.cancel' | translate}}</label>
+            <input [(ngModel)]="issue.status_issue" type="radio" class="with-gap" name="status_issue" id="4" value="completed">
+            <label for="4">{{'issue.completed' | translate}}</label>
+        </div>
     </div>
-    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-        <textarea id="issue" [(ngModel)]="issue" placeholder="please input your issue" class="materialize-textarea"></textarea>
-        <label for="issue" data-error="wrong" data-success="right">Issue</label>
+   <!--  <form>
+        <div class="file-field input-field">
+            <div class="btn">
+                <span>{{'issue.picture' | translate}}</span>
+                <input type="file" name="avatar" (change)="fileChangeEvent($event);readUrl($event);">
+            </div>
+            <div class="file-path-wrapper">
+                <input class="file-path validate" [(ngModel)]="issue._id" [placeholder]="'issue.picture-placeholder' | translate" name="id"
+                    id="id" type="text">
+            </div>
+        </div>
+    </form>
+    <img [src]="url" alt="" /> -->
+    <div class="row">
+        <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave(id);">{{'issue.save' | translate}}</a>
     </div>
-    <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-        <input type="text" class="datepicker" materialize="pickadate" [materializeParams]="[{format:'dd/mm/yyyy'}]" >
-    </div>
-    <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
 </div>

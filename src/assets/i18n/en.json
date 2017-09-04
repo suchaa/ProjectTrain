@@ -1,0 +1,89 @@
+{
+    "pubilc": {
+        "home": "Home",
+        "login": "Login"
+    },
+    "login": {
+        "email": "E-Mail",
+        "password": "Password",
+        "email-error": "Invalid e-Mail",
+        "password-error": "Invalid password",
+        "email-placeholder": "Please input your email",
+        "password-placeholder": "Please input your password",
+        "login-button": "Login"
+    },
+    "support": {
+        "company": "Company",
+        "customer": "Customer",
+        "user": "User",
+        "issue": "Issue"
+    },
+    "company": {
+        "code": "Code",
+        "name": "Name",
+        "edit": "Edit",
+        "delete": "Delete",
+        "company-code": "Company Code",
+        "company-name": "Company Name",
+        "code-placeholder": "Please input your company code",
+        "name-placeholder": "Please input your company name"
+    },
+    "customer": {
+        "first-name": "First name",
+        "last-name": "Last name",
+        "company-name": "Company name",
+        "email": "E-Mail",
+        "tel": "Tel",
+        "address": "Address",
+        "edit": "Edit",
+        "delete": "Delete",
+        "save": "Save",
+        "fname-placeholder": "Please input your first name",
+        "lname-placeholder": "Please input your last name",
+        "comp-placeholder": "Choose your option",
+        "email-placeholder": "Please input your E-Mail",
+        "tel-placeholder": "Please input your phone number",
+        "address-placeholder": "Please input your address"
+    },
+    "user": {
+        "email": "E-Mail",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "password": "Password",
+        "re_password": "Re-Password",
+        "mobile": "Mobile Phone",
+        "picture": "Picture",
+        "save": "Save",
+        "gender": "Gender",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "issue": {
+        "issue_no": "Issue no",
+        "topic": "Topic",
+        "description": "Description",
+        "company": "Company",
+        "customer": "Customer",
+        "date_picker": "Date",
+        "user": "User",
+        "status_issue": "Status issue",
+        "picture": "Picture",
+        "save": "Save",
+        "edit": "Edit",
+        "delete": "Delete",
+        "issue_no-placeholder": "Please input your issue no",
+        "topic-placeholder": "Please input your topic",
+        "description-placeholder": "Please input your description",
+        "company-option": "Choose your company",
+        "customer-option": "Choose your customer",
+        "date_picker-placeholder": "Choose your date",
+        "user-option": "Choose your User",
+        "status_issue-placeholder": "Your select status : ",
+        "picture-placeholder": "Choose your picture",
+        "waiting": "Waiting",
+        "process": "Process",
+        "hold": "Hold",
+        "cancel": "Cancel",
+        "completed": "Completed"
+    }
+}

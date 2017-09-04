@@ -74,6 +74,7 @@ export class CompanyListComponent implements OnInit {
     }
     this.companyService.search(searchBody).subscribe(data => {
       this.companyData = data.rows;
+      
       this.total = data.total;
       this.renderPaging();
     }, error =>{

@@ -1,51 +1,59 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { IssueService } from '../issue.service'
+import { IssueService } from '../shared/issue/issue.service'
 
 @Component({
   selector: 'app-issue-list',
   templateUrl: './issue-list.component.html',
   styleUrls: ['./issue-list.component.css'],
-  providers: [ IssueService ]
+  providers: [IssueService]
 })
 export class IssueListComponent implements OnInit {
+
+  issueData = []
+  imgUrl = "http://localhost:3000/issue/profile/"
+
+  searchText = "";
+  numPage = 0;
+  rowPerPage = 10;
+  total = 0;
+  paging =[];
 
   constructor(
     private router: Router,
     private issueService: IssueService
   ) { }
 
-  issueData = []
-  searchText = "";
-  numPage = 0;
-  rowPerPage = 5;
-  total = 0;
-  paging =[];
-
   ngOnInit() {
     this.search();
   }
 
-  onEditButtonClick(id){
-    this.router.navigate(['support', 'issue','findById', id]);
-  }
-
-  onDeleteButtonClick(id){
-    this.issueService.deleteItem(id).subscribe(
-      datas => {
-        Materialize.toast('Delete complate.', 1000);
-        this.search();
-      },
-      err => {
-        console.log(err);
-      });
-  }
-
-  onAddButtonClick(){
+  onAddButtonClick() {
     this.router.navigate(['support', 'issue']);
   }
 
-  search(){
+  onDeleteClick(id) {
+    this.issueService.deleteItem(id).subscribe((datas) => {
+      this.loadData();
+      Materialize.toast('Delete complate.', 1000);
+    });
+  }
+
+  onEditButtonClick(id) {
+    this.router.navigate(['support', 'issue', 'findById', id]);
+  }
+
+  onAttachClick(id) {
+     this.router.navigate(['support', 'issue-attach', id]);
+  }
+
+  loadData() {
+    this.issueService.loadItem().subscribe((datas) => {
+      this.issueData = datas;
+    });
+  }
+
+   search(){
     let searchBody = {
       searchText: this.searchText,
       rowPerPage: this.rowPerPage,
@@ -60,7 +68,7 @@ export class IssueListComponent implements OnInit {
     });
   }
 
-  renderPaging(){
+   renderPaging(){
     let allPage = Math.ceil( this.total / this.rowPerPage);
     this.paging = [];
     for(let i=0; i<allPage; i++){
@@ -72,5 +80,5 @@ export class IssueListComponent implements OnInit {
     this.numPage = pId;
     this.search();
   }
-  
+
 }

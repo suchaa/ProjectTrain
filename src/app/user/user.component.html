@@ -1,4 +1,4 @@
-<div class="row box-user">
+<!-- <div class="row box-user">
   <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
     <input id="first_name" [(ngModel)]="firstName" class="validate" placeholder="please input your first name" type="text">
     <label for="first_name">Firstname</label>
@@ -8,12 +8,12 @@
     <label for="last_name">Lastname</label>
   </div>
   <div class="col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-    <label>Gender</label>
-  <!-- <div *ngFor="let item of gender">
+    <label>Gender</label> -->
+<!-- <div *ngFor="let item of gender">
       <input type="radio" name="gender" id="{{item}}" value="{{item}}" (change)="radioChangeHandler($event)">
       <label for="{{item}}">{{item}}</label>
     </div> -->
-    <input [(ngModel)]="gender" type="radio" class="with-gap" name="gender" id="0" value="male">
+<!--    <input [(ngModel)]="gender" type="radio" class="with-gap" name="gender" id="0" value="male">
     <label for="0">Male</label>
     <input [(ngModel)]="gender" type="radio" class="with-gap" name="gender" id="1" value="female">
     <label for="1">Female</label>
@@ -28,4 +28,50 @@
     <label for="pass_word" data-error="wrong" data-success="right">Password</label>
   </div>
   <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
+</div>  -->
+
+<div class="container">
+  <div class="row" materialize="updateTextFields">
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.firstName" [placeholder]="'user.firstName' | translate" id="firstName" type="text" class="validate">
+      <label for="firstName">{{'user.firstName' | translate}}</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.lastName" [placeholder]="'user.lastName' | translate" id="lastName" type="text" class="validate">
+      <label for="lastName">{{'user.lastName' | translate}}</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.email" [placeholder]="'user.email' | translate" id="email" type="email" class="validate">
+      <label for="email">{{'user.email' | translate}}</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.mobile" [placeholder]="'user.mobile' | translate" id="mobile" type="text" class="validate">
+      <label for="mobile">{{'user.mobile' | translate}}</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.password" [placeholder]="'user.password' | translate" id="password" type="password" class="validate">
+      <label for="password">{{'user.password' | translate}}</label>
+    </div>
+    <div class="input-field col s12 m6">
+      <input [(ngModel)]="user.rePassword" [placeholder]="'user.re_password' | translate" id="re_password" type="password" class="validate">
+      <label for="re_password">{{'user.re_password' | translate}}</label>
+    </div>
+  </div>
+  <form>
+    <div class="file-field input-field">
+      <div class="btn">
+        <span>{{'user.picture' | translate}}</span>
+        <input type="file" name="avatar" (change)="fileChangeEvent($event);readUrl($event);">
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" [(ngModel)]="user._id" name="id" id="id" type="text">
+      </div>
+    </div>
+  </form>
+  <img [src]="url" alt="" />
+  <div class="row">
+    <a class="btn col s12" (click)="onSave();">{{'user.save' | translate}}</a>
+  </div>
 </div>
+
+<h5>{{user | json}}</h5>

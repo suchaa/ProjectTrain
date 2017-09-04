@@ -1,13 +1,14 @@
-<div class="row box-company">
+<div class="row box-company" materialize="updateTextFields">
     <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-        <input id="comp_code" [(ngModel)]="compCode" placeholder="please input your company code" type="text">
-        <label for="comp_code">Company Code</label>
+        <input id="comp_code" [(ngModel)]="compCode" [placeholder]="'company.code-placeholder' | translate" type="text">
+        <label for="comp_code">{{'company.company-code' | translate}}</label>
     </div>
     <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-        <input id="comp_name" [(ngModel)]="compName" placeholder="please input your company name" type="text">
-        <label for="comp_code">Company Name</label>
+        <input id="comp_name" [(ngModel)]="compName" [placeholder]="'company.name-placeholder' | translate" type="text">
+        <label for="comp_code">{{'company.company-name' | translate}}</label>
     </div>
     <a class="btn col s4 offset-s4 m2 offset-m5 l2 offset-l5 green darken-3" (click)="onSave();">Save</a>
 </div>
 
   
+<h5>{{'support' | translate | json}}</h5>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CustomerService } from '../customer.service'
+import { CustomerService } from '../shared/customer/customer.service'
+
 
 @Component({
   selector: 'app-customer-list',

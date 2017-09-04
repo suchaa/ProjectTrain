@@ -1,0 +1,86 @@
+{
+    "pubilc": {
+        "home": "หน้าแรก",
+        "login": "เข้าสู่ระบบ"
+    },
+    "login": {
+        "email": "อีเมล์",
+        "password": "รหัสผ่าน",
+        "email-error": "อีเมล์ไม่ถูกต้อง",
+        "password-error": "รหัสผ่านไม่ถูกต้อง",
+        "email-placeholder": "กรุณาระบุอีเมล์",
+        "password-placeholder": "กรุณาระบุรหัสผ่าน",
+        "login-button": "เข้าสู่ระบบ"
+    },
+    "support": {
+        "company": "บริษัท",
+        "customer": "ลูกค้า",
+        "user": "ผู้ใช้งาน",
+        "issue": "ปัญหา"
+    },
+    "company": {
+        "code": "รหัส",
+        "name": "ชื่อ",
+        "edit": "แก้ไข",
+        "delete": "ลบ",
+        "company-code": "รหัสบริษัท",
+        "company-name": "ชื่อบริษัท",
+        "code-placeholder": "กรุณาระบุรหัสบริษัท",
+        "name-placeholder": "กรุณาระบุชื่อบริษัท"
+    },
+    "customer": {
+        "first-name": "ชื่อ",
+        "last-name": "นามสกุล",
+        "company-name": "ชื่อบริษัท",
+        "email": "อีเมล์",
+        "tel": "เบอร์โทรศัพท์",
+        "address": "ที่อยู่",
+        "edit": "แก้ไข",
+        "delete": "ลบ",
+        "save": "บันทึก",
+        "fname-placeholder": "กรุณาระบุชื่อ",
+        "lname-placeholder": "กรุณาระบุนามสกุล",
+        "comp-placeholder": "กรุณาเลือกออฟชั่น",
+        "email-placeholder": "กรุณาระบุอีเมล์",
+        "tel-placeholder": "กรุณาระบุเบอร์โทรศัพท์",
+        "address-placeholder": "กรุณาระบุที่อยู่"
+    },
+    "user": {
+        "email": "อีเมล์",
+        "firstName": "ชื่อ",
+        "lastName": "นามสกุล",
+        "password": "รหัสผ่าน",
+        "re_password": "รหัสผ่านอีกครั้ง",
+        "mobile": "เบอร์มือถือ",
+        "picture": "รูปถ่าย",
+        "save": "บันทึก",
+        "gender": "เพศ",
+        "edit": "แก้ไข",
+        "delete": "ลบ"
+    },
+    "issue": {
+        "issue_no": "ลำดับ",
+        "topic": "หัวข้อปัญหา",
+        "description": "รายละเอียดปัญหา",
+        "company": "บริษัท",
+        "customer": "ลูกค้า",
+        "date_picker": "วันที่",
+        "user": "ผู้ใช้งาน",
+        "status_issue": "สถานะปัญหา",
+        "picture": "รูปภาพ",
+        "issue_no-placeholder": "กรุณาระบุลำดับ",
+        "topic-placeholder": "กรุณาระบุหัวข้อปัญหา",
+        "description-placeholder": "กรุณาระบุรายละเอียดปัญหา",
+        "company-option": "กรุณาระบุบริษัท",
+        "customer-option": "กรุณาระบุลูกค้า",
+        "date_picker-placeholder": "กรุณาระบุวันที่",
+        "user-option": "กรุณาระบุผู้ใช้งาน",
+        "status_issue-placeholder": "กรุณาระบุสถานะปัญหา",
+        "picture-placeholder": "กรุณาเลือกรูปภาพ",
+        "waiting": "Waiting",
+        "process": "Process",
+        "hold": "Hold",
+        "cancel": "Cancel",
+        "completed": "Completed"
+    }
+}

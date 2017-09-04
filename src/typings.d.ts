@@ -6,16 +6,16 @@ interface NodeModule {
 }
 
 /* declare JQuery */
-declare function $(arr:string): JQuery; 
+// declare function $(arr:string): JQuery; 
 
-interface JQuery{
-  length: number
-}
+//  interface JQuery{
+//   length: number
+// }
 
-declare let Materialize : {
-  toast(text, time): any;
-  updateTextFields(): any;
-  // material_select(): any;
-/*   material_select(): any;
-  pickadate(): Date; */
-}
+// declare let Materialize : {
+//   toast(text, time): any;
+//   updateTextFields(): any;
+//   // material_select(): any;
+// /*   material_select(): any;
+//   pickadate(): Date; */
+// } 

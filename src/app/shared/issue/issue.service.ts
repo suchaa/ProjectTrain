@@ -3,24 +3,30 @@ import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { environment } from '../environments/environment';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
-export class UserService {
+export class IssueService {
 
-  constructor(private http : Http) { }
+  options: RequestOptions;
+  constructor(private http: Http) { 
+    let headers = new Headers({
+      'Content-Type': 'application/json',
+      'Authorization': 'bearer ' + localStorage.getItem('token')
+    });
+    this.options = new RequestOptions({ headers: headers });
+  }
 
   loadItem(): Observable<any[]> {
-    return this.http.get(`${environment.apiUrl}/user`) 
+    return this.http.get(`${environment.apiUrl}/issue`, this.options)
       .map((res: Response) => {
-        /* retrun ค่าออกไป */
-        return res.json() /* subscribe รอรับผลจากตรงนี้ */
+        return res.json()
       })
       .catch((error: any) => Observable.throw(error));
   }
 
   loadItemById(id): Observable<any> {
-    return this.http.get(`${environment.apiUrl}/user/findById/${id}`)
+    return this.http.get(`${environment.apiUrl}/issue/findById/${id}`, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -29,10 +35,8 @@ export class UserService {
 
   addItem(body): Observable<any> {
     let bodyString = JSON.stringify(body); 
-    let headers = new Headers({ 'Content-Type': 'application/json' }); 
-    let options = new RequestOptions({ headers: headers }); 
 
-    return this.http.post(`${environment.apiUrl}/user`, body, options) 
+    return this.http.post(`${environment.apiUrl}/issue`, bodyString, this.options) 
       .map((res: Response) => {
         return res.json() 
       })
@@ -40,7 +44,7 @@ export class UserService {
   }
 
   deleteItem(id): Observable<any> {
-    return this.http.delete(`${environment.apiUrl}/user/${id}`)
+    return this.http.delete(`${environment.apiUrl}/issue/${id}`, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -48,11 +52,10 @@ export class UserService {
   }
 
   updateItem(id, body): Observable<any> {
+    delete body._id;
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
-
-    return this.http.put(`${environment.apiUrl}/user/${id}`, body, options)
+    
+    return this.http.put(`${environment.apiUrl}/issue/${id}`, bodyString, this.options)
       .map((res: Response) => {
         return res.json()
       })
@@ -61,10 +64,8 @@ export class UserService {
 
   search(body): Observable<any> {
     let bodyString = JSON.stringify(body);
-    let headers = new Headers({ 'Content-Type': 'application/json' });
-    let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(`${environment.apiUrl}/user/search`, bodyString, options)
+    return this.http.post(`${environment.apiUrl}/issue/search`, body, this.options)
       .map((res: Response) => {
         return res.json()
       })

@@ -1,21 +1,26 @@
-<div class="row login-box ">
-  <div class="col s12 m4 offset-m4 center">
-    <!-- <i class="large material-icons orange-text text-darken-4">account_box</i> -->
-    <img class="circle" src="http://lorempixel.com/150/150/">
+<form (ngSubmit)="doLogin()" #loginForm="ngForm">
+  <div class="row login-box ">
+    <div class="col s12 m4 offset-m4 center">
+      <!-- <i class="large material-icons orange-text text-darken-4">account_box</i> -->
+      <img class="circle" src="http://lorempixel.com/150/150/">
 
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+      <i class="material-icons prefix">account_box</i>
+      <input id="email" name="email" type="email" [(ngModel)]="login.email" #email_f ="ngModel" class="validate" placeholder="please input your email">
+      <label for="email" data-error="please input valid email.">Email</label>
+    </div>
+    <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
+      <i class="material-icons prefix">https</i>
+      <input id="password" name="password" type="password" [(ngModel)]="login.password" #password_f ="ngModel" class="validate" pattern="\d{5,8}" placeholder="please input your password">
+      <label for="password">Password</label>
+    </div>
+    <button type="submit" class="col s10 offset-s1 m4 offset-m4 btn blue darken-3" [disabled]="!loginForm.form.valid">Login</button>
+    <!--   <a class="waves-effect waves-light btn col s10 offset-s1 m6 offset-m3 l4 offset-l4 green darken-3" (click)="doLogin()">Login</a> -->
   </div>
-  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-    <i class="material-icons prefix">account_box</i>
-    <input id="email" type="email" [(ngModel)]="email" class="validate" placeholder="please input your email">
-    <label for="email" data-error="please input valid email.">Email</label>
-  </div>
-  <div class="input-field col s10 offset-s1 m6 offset-m3 l4 offset-l4">
-    <i class="material-icons prefix">https</i>
-    <input id="password" type="password" [(ngModel)]="password" class="validate" pattern="\d{5,8}" placeholder="please input your password">
-    <label for="password">Password</label>
-  </div>
-  <a class="waves-effect waves-light btn col s10 offset-s1 m6 offset-m3 l4 offset-l4 green darken-3" (click)="doLogin()">Login</a>
-</div>
+</form>
 
-<h1>{{email}}</h1>
-<h1>{{password}}</h1>
+<h5>
+  {{login | json}}
+</h5>
+<h1>{{password}}</h1> 

@@ -1,61 +1,65 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { CustomerService } from '../customer.service'
+import { Customer } from '../shared/customer/customer';
+import { CustomerService } from '../shared/customer/customer.service'
+import { CompanyService } from '../company.service';
 
 @Component({
   selector: 'app-customer',
   templateUrl: './customer.component.html',
   styleUrls: ['./customer.component.css'],
-  providers: [CustomerService]
+  providers: [CustomerService, CompanyService]
 })
 export class CustomerComponent implements OnInit {
 
   constructor(
     private router: Router,
     private activateRoute: ActivatedRoute,
-    private customerService: CustomerService
-  ) { }
+    private customerService: CustomerService,
+    private companyService: CompanyService
+  ) {
+    this.customer = new Customer();
+  }
+
+  customer: Customer;
+  companyData = [];
 
   mode: string = "ADD";
   id: number = 0;
 
-  firstName: string;
-  lastName: string;
-  email: string;
-  tel: string;
-  address: string;
-  compName: string;
-
-  companyData = [{ compName: "company 1" }, { compName: "company 2" }, { compName: "company 3" }];
-  //companyData = [];
-
-  /*  companyData = [];
-   customerData = [] */
+  // firstName: string;
+  // lastName: string;
+  // email: string;
+  // tel: string;
+  // address: string;
+  // compName: string;
 
   ngOnInit() {
-   /* 
-    this.customerService.lasdItemComp().subscribe(com => {
-      this.companyData = com.rows;
+    /* 
+     this.customerService.lasdItemComp().subscribe(com => {
+       this.companyData = com.rows;
+ 
+     }, error => {
+       console.log(error);
+     }) */
 
-    }, error => {
-      console.log(error);
-    }) */
-
-  /*   for(let c of this.companyData){
-      console.log(c.compName);
-    } */
+    /*   for(let c of this.companyData){
+        console.log(c.compName);
+      } */
 
     this.activateRoute.params.subscribe(params => {
+      this.companyService.loadItem().subscribe((data) => {
+        this.companyData = data;
+        /* setTimeout(() => {
+          $('select').material_select();
+        }, 100); */
+      });
       if (params['id']) {
         let id = params['id'];
         this.customerService.loadItemById(id).subscribe(data => {
-          Materialize.updateTextFields();
-          this.firstName = data.firstName;
-          this.lastName = data.lastName;
-          this.email = data.email;
-          this.tel = data.tel;
-          this.address = data.address;
-          this.compName = data.compName;
+          this.customer = data;
+          /* setTimeout(() => {
+          }, 1000); */
         },
           error => {
             console.log(error);
@@ -68,16 +72,8 @@ export class CustomerComponent implements OnInit {
   }
 
   onSave() {
-    let cus = {
-      firstName: this.firstName,
-      lastName: this.lastName,
-      email: this.email,
-      tel: this.tel,
-      address: this.address,
-      compName: this.compName
-    }
     if (this.mode === 'EDIT') {
-      this.customerService.updateItem(this.id, cus).subscribe(
+      this.customerService.updateItem(this.id, this.customer).subscribe(
         datas => {
           Materialize.toast('Update complate.', 1000);
           this.router.navigate(['support', 'customer-list']);
@@ -86,7 +82,7 @@ export class CustomerComponent implements OnInit {
           console.log(err);
         });
     } else {
-      this.customerService.addItem(cus).subscribe(
+      this.customerService.addItem(this.customer).subscribe(
         datas => {
           Materialize.toast('Save complate.', 1000);
           this.router.navigate(['support', 'customer-list']);

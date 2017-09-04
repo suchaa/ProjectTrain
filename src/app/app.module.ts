@@ -1,3 +1,4 @@
+import { MaterializeModule } from 'angular2-materialize';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,16 @@ import { SupportZoneComponent } from './support-zone/support-zone.component';
 import { PublicZoneComponent } from './public-zone/public-zone.component';
 import { LoginGuardService } from './login-guard.service';
 import { TransfPipe } from './transf.pipe';
-import { MaterializeModule } from 'angular2-materialize';
+
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule,TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { IssueAttachComponent } from './issue-attach/issue-attach.component';
+import { ChatComponent } from './chat/chat.component';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 @NgModule({
   declarations: [
@@ -36,14 +46,24 @@ import { MaterializeModule } from 'angular2-materialize';
     IssueListComponent,
     SupportZoneComponent,
     PublicZoneComponent,
-    TransfPipe
+    TransfPipe,
+    IssueAttachComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpModule,
-    MaterializeModule
+    MaterializeModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [LoginGuardService],
   bootstrap: [AppComponent]

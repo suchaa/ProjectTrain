@@ -1,15 +1,17 @@
 <nav>
   <div class="nav-wrapper green darken-1">
     <a href="#!" class="brand-logo">Application</a>
-    <a href="#" data-activates="mobile-demo" class="button-collapse">
+    <a href="#" data-activates="mobile-demo" class="button-collapse" >
         <i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
-      <li><a routerLink="/home">HOME</a></li>
-      <li><a routerLink="/login">LOGIN</a></li>
+      <li><a routerLink="/home">{{'pubilc.home' | translate}}</a></li>
+      <li><a routerLink="/login">{{'pubilc.login' | translate}}</a></li>
+       <li><a class="btn" (click)="changLang();">{{currentLang}}</a></li>
     </ul>
     <ul class="side-nav" id="mobile-demo">
-      <li><a routerLink="/home">HOME</a></li>
-      <li><a routerLink="/login">LOG IN</a></li>
+      <li><a class="btn" (click)="changLang();">{{currentLang}}</a></li>
+      <li><a routerLink="/home">{{'pubilc.home' | translate}}</a></li>
+      <li><a routerLink="/login">{{'pubilc.login' | translate}}</a></li>
     </ul>
   </div>
 </nav>
